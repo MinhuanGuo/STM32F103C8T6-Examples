@@ -6,7 +6,7 @@ STM32F103C8T5最小系统板，STLINK下载程序，miniUSB供电。
 
 @[STM32F103C8T5最小系统板](https://hacktronics.co.in/arm-microcontroller/stm32f103c8t6-arm-stm32-minimum-system-learning-evaluation-development-board-module)
 <p align="center">
-	<img src="\pic\stm32f103c8t6 .jpg width="400">
+	<img src=".\pic\stm32f103c8t6 .jpg width="400">
     <br>
     <em>Fig. 1: STM32F103C8T5最小系统板</em>
 </p>
