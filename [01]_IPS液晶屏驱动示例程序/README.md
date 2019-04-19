@@ -1,19 +1,12 @@
 # 1.3寸IPS液晶屏示例程序
 
+V1:2019.04.19
+
 ### 硬件：
 
-STM32F103C8T5最小系统板，STLINK下载程序，miniUSB供电。
+[STM32F103C8T5最小系统板](https://hacktronics.co.in/arm-microcontroller/stm32f103c8t6-arm-stm32-minimum-system-learning-evaluation-development-board-module)，STLINK下载程序，miniUSB供电。
 
-@[STM32F103C8T5最小系统板](https://hacktronics.co.in/arm-microcontroller/stm32f103c8t6-arm-stm32-minimum-system-learning-evaluation-development-board-module)
-<p align="center">
-	<img src="\pic\stm32f103c8t6 .jpg width="400">
-    <br>
-    <em>Fig. 1: STM32F103C8T5最小系统板</em>
-</p>
-
-IPS240x240液晶屏，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK.
-
-
+[IPS240x240液晶屏](<https://www.banggood.com/1_3-Inch-IPS-TFT-LCD-Display-240240-Color-HD-LCD-Screen-3_3V-ST7789-Driver-Module-p-1383404.html?cur_warehouse=CN>)，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK.
 
 ST-LINK下载器。
 
@@ -39,6 +32,6 @@ PB1 <--- > RST
 
 ### 参考：
 
-1. STM32F103C8T5参考正点原子的模板程序：
+1. 正点原子的模板程序《STM32F1开发指南(精英版)-库函数版本_V1.0》
 
-2. 
+2. [Arduino版的ST7789和Adafruit_GFX程序](https://github.com/ananevilya/Arduino-ST7789-Library.git)
