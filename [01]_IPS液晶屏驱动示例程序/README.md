@@ -4,9 +4,9 @@ V1:2019.04.19
 
 ### 硬件：
 
-[STM32F103C8T5最小系统板](https://hacktronics.co.in/arm-microcontroller/stm32f103c8t6-arm-stm32-minimum-system-learning-evaluation-development-board-module)，STLINK下载程序，miniUSB供电。
+[STM32F103C8T5最小系统板](<https://detail.tmall.com/item.htm?spm=a230r.1.14.23.1fe0479ebRMkwz&id=559305712053&ns=1&abbucket=10>)，STLINK下载程序，miniUSB供电。
 
-[IPS240x240液晶屏](<https://www.banggood.com/1_3-Inch-IPS-TFT-LCD-Display-240240-Color-HD-LCD-Screen-3_3V-ST7789-Driver-Module-p-1383404.html?cur_warehouse=CN>)，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK.
+[IPS240x240液晶屏](<https://item.taobao.com/item.htm?spm=a230r.1.14.20.139e4e1e7bdjz0&id=565591692266&ns=1&abbucket=10#detail>)，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK.
 
 ST-LINK下载器。
 
