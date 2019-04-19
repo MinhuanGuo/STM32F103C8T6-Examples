@@ -1,6 +1,7 @@
 #include "LG_ST7789.h"
 #include "spi.h"
 #include "delay.h"
+#include "glcdfont.c"
 
 void ips_display_Init(IPS_TypeDef *ips, u16 w, u16 h, u8 r)
 {
@@ -688,6 +689,44 @@ void setRotation(IPS_TypeDef *ips, uint8_t r) {
 
 void invertDisplay(u8 i) {
   lcd_write_reg(i ? ST7789_INVON : ST7789_INVOFF);
+}
+
+
+// Draw a character
+void drawChar(IPS_TypeDef *ips, int16_t x, int16_t y, unsigned char c,
+			    uint16_t color, uint16_t bg, uint8_t size) {
+
+  int8_t i,j,line;
+					
+  if((x >= ips->_width)            || // Clip right
+     (y >= ips->_height)           || // Clip bottom
+     ((x + 6 * size - 1) < 0) || // Clip left
+     ((y + 8 * size - 1) < 0))   // Clip top
+    return;
+
+  for (i=0; i<6; i++ ) {
+
+    if (i == 5) 
+      line = 0x0;
+    else 
+      line = pgm_read_byte(font+(c*5)+i);
+    for (j = 0; j<8; j++) {
+      if (line & 0x1) {
+        if (size == 1) // default size
+          drawPixel(ips, x+i, y+j, color);
+        else {  // big size
+          fillRect(ips, x+(i*size), y+(j*size), size, size, color);
+        } 
+      } else if (bg != color) {
+        if (size == 1) // default size
+          drawPixel(ips, x+i, y+j, bg);
+        else {  // big size
+          fillRect(ips, x+i*size, y+j*size, size, size, bg);
+        }
+      }
+      line >>= 1;
+    }
+  }
 }
 
 

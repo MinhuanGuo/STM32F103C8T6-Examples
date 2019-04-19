@@ -557,6 +557,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\LG_ST7789\graphicstest.c</FilePath>
             </File>
+            <File>
+              <FileName>glcdfont.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\LG_ST7789\glcdfont.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
