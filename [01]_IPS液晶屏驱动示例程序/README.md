@@ -4,11 +4,11 @@ V1:2019.04.19
 
 ### 硬件：
 
-[STM32F103C8T5最小系统板](<https://detail.tmall.com/item.htm?spm=a230r.1.14.23.1fe0479ebRMkwz&id=559305712053&ns=1&abbucket=10>)，STLINK下载程序，miniUSB供电。
+1. [STM32F103C8T5最小系统板](<https://detail.tmall.com/item.htm?spm=a230r.1.14.23.1fe0479ebRMkwz&id=559305712053&ns=1&abbucket=10>)，STLINK下载程序，miniUSB供电。
 
-[IPS240x240液晶屏](<https://item.taobao.com/item.htm?spm=a230r.1.14.20.139e4e1e7bdjz0&id=565591692266&ns=1&abbucket=10#detail>)，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK.
+2. [IPS240x240液晶屏](<https://item.taobao.com/item.htm?spm=a230r.1.14.20.139e4e1e7bdjz0&id=565591692266&ns=1&abbucket=10#detail>)，ST7789驱动，SPI接口，依次定义为：GND，VCC，SCL，SDA，RES，DC，BLK，65K色彩，即16位色彩，RGB565，参考色彩工具：[16 bit color generator](<https://ee-programming-notepad.blogspot.com/2016/10/16-bit-color-generator-picker.html>)
 
-ST-LINK下载器。
+3. ST-LINK下载器。
 
 ### 硬件引脚连接:
 
