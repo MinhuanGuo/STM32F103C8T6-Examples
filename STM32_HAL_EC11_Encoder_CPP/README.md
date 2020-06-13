@@ -1,0 +1,4 @@
+# STM32F103C8T6-HAL-EC11 Encoder
+
+
+基于STM32CubeMX，配置STM32F103C8T6单片机的PWM波、普通定时器、旋转编码器以及GPIO按键中断。
