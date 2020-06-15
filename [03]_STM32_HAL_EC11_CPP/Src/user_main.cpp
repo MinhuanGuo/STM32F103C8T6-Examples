@@ -29,29 +29,27 @@ void user_setup()
 
 
 ////////////////
+static char res[20];
+static uint32_t enc_tim2 = 0;
+static int PWM_Width_Out = 0;
 void user_loop()
 {
-		static uint32_t enc1;
-		enc1 = (uint32_t)(__HAL_TIM_GET_COUNTER(&htim2));//获取编码器的值：0~100
-	
-	
-		static char res[10];
-		static int out=0.0f;
-		out = enc1 * 4; //PWM脉宽：0~400；
-	  
-		sprintf(res,"%d\r\n",out);
+		
+	//串口发送数据：编码器的值，PWM的宽度
+		sprintf(res,"%d,%d\r\n",enc_tim2,PWM_Width_Out);
 		HAL_UART_Transmit(&huart2,(uint8_t*)res,std::strlen(res),10);	
 		
-		
-	  setPWM(htim3, TIM_CHANNEL_4, 999, (int)out); //TIM3_CH4：PWM输出，1KHz
-	
-		HAL_Delay(5);
+		HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+		HAL_Delay(50);
 }
 
 ////////////////
 void user_Timer_fun()
 {
-	
-		/* Toggle LED */				
-					
+	//100Hz，读取Tim2旋转编码器的输入，范围：0~100
+		enc_tim2 = (uint32_t)(__HAL_TIM_GET_COUNTER(&htim2));//获取编码器的值：0~100
+		PWM_Width_Out = enc_tim2*4; //PWM脉宽：0~400；
+	//用读到的编码器值，设定PWM脉宽，调节LED的明暗度。
+		setPWM(htim3, TIM_CHANNEL_4, 999, (int)PWM_Width_Out); //TIM3_CH4：PWM输出，1KHz
+		/* Toggle LED */								
 }

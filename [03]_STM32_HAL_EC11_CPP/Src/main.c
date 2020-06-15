@@ -161,7 +161,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim->Instance == htim4.Instance)
     {
 			tmp++;
-			if(tmp==1000)//1s timer
+			if(tmp==20)//100 Hz
 			{
 				user_Timer_fun();
 
