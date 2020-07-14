@@ -7,8 +7,8 @@
 #include "TSK_STM_core.h"  
 #include "master_Control.h"
 
-extern void Task_LED0(void);//更新输入：按键、旋钮编码器
-extern void Task_UART2(void);//更新传感器
+extern void Task_LED0(void);//任务1：翻转LED0
+extern void Task_UART2(void);//任务2：串口2发送数据
 
 //定义若干个任务：Status，Run，Timer，ItvTime，(*TaskHook)；
 TASK_COMPONENTS TaskComps[TASK_MAX] = 
@@ -44,8 +44,8 @@ void user_systick_fun()
 					TaskComps[i].Timer--;     // 减去一个节拍    
 					if (TaskComps[i].Timer <= 0)  // 计时器时间到
 					{
-							 TaskComps[i].Timer = TaskComps[i].ItvTime;   // 恢复计时器值，重新下一次 
-							 TaskComps[i].Run = 1;    // 任务可以运行
+						TaskComps[i].Timer = TaskComps[i].ItvTime;   // 恢复计时器值，重新下一次 
+						TaskComps[i].Run = 1;    // 任务可以运行
 					}
 			}
 		}
