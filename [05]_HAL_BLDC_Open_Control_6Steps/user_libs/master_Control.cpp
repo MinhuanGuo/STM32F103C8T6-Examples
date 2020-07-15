@@ -1,10 +1,5 @@
 #include "master_Control.h"
 
-
-
-
-
-extern  uint32_t pwmD;
 extern  MH_Hardware::_oled0561 oled;
 extern  MH_Hardware::_bldc_motor bldcMotor;
 extern  MH_Hardware::_gpio_key gpio_key;
@@ -15,9 +10,9 @@ void Encoder_Key1(void * arg)
 		static bool tmp = true;
 		tmp  = !tmp;
 		
-		bldcMotor.setDir(tmp);//改变方向
+		bldcMotor.setClockWise(tmp);//改变方向
 		bldcMotor.updateHallValue();
-		bldcMotor.setSpeed(pwmD);	
+		bldcMotor.setSpeed();	
 }
 
 void Encoder_Key2(void * arg)
@@ -25,9 +20,9 @@ void Encoder_Key2(void * arg)
 		static bool tmp = true;
 		tmp  = !tmp;
 		
-		bldcMotor.setRun(tmp);//启动/停机
+		bldcMotor.enableRun(tmp);//启动/停机
 		bldcMotor.updateHallValue();
-		bldcMotor.setSpeed(pwmD);		
+		bldcMotor.setSpeed();			
 }
 
 //按键扫描相关的变量、函数指针：
@@ -61,7 +56,8 @@ void Task_Manipulate(void)
 			enc_tim2 %=50;	
 			enc_tim2_last = enc_tim2;
 	}
-	pwmD = enc_tim2+2;	
+	bldcMotor.updatePWMD(enc_tim2+5);//改变bldc中PWM占空比
+	bldcMotor.setSpeed();	
 }
 
 
@@ -82,7 +78,7 @@ void Task_Show(void)//显示OLED屏
 		static char res[20];
 	
 	//第二行，显示PWM占空比D
-		sprintf(res,"D: %2d%%\0",pwmD);
+		sprintf(res,"D: %2d%%\0",bldcMotor.getPWMD());
 		oled.DISPLAY_8x16_BUFFER(2,(u8*)res);
 	
 

@@ -14,13 +14,6 @@
 #include <math.h>
 
 
-
-/////////////////////////////////////////////////////
-//变量：
-uint32_t pwmD;
-
-
-
 /////////////////////////////////////////////////////
 //硬件结构体对象
 MH_Hardware::_oled0561 oled(0x78); //OLED屏
@@ -67,15 +60,16 @@ void user_setup()
 	//============================================================
 	//Step4：TIM3_Channel1、2、3通道：UVW霍尔传感器初始化
 	//			 TIM3_Channel4：无输出的输出比较，作为定时器
-	bldcMotor.setRun(true);
-	bldcMotor.setDir(true); 
+	bldcMotor.enableRun(true);
+	bldcMotor.setClockWise(true); 
 	
 	HAL_TIMEx_HallSensor_Start(&htim3);
 	__HAL_TIM_ENABLE_IT(&htim3,TIM_IT_TRIGGER|TIM_IT_CC4);	
 	
 	//BLDC初步启动
 	bldcMotor.updateHallValue();
-	bldcMotor.setSpeed(10);//调用一次，启动电机
+	bldcMotor.updatePWMD(10);
+	bldcMotor.setSpeed();//调用一次，启动电机
 }
 
 
@@ -112,7 +106,7 @@ void user_systick_fun()
 void user_TIM3_HALL_fun()
 {
 		bldcMotor.updateHallValue();//更新霍尔传感器的值
-		bldcMotor.setSpeed(pwmD);	//根据霍尔传感器的值，进行六步换相，并通过调节PWM占空比来调速
+		bldcMotor.setSpeed();	//根据霍尔传感器的值，进行六步换相，并通过调节PWM占空比来调速
 }
 
 

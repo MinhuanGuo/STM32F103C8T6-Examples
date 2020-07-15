@@ -1,7 +1,5 @@
 #include "bldc_motor.h"
 
-TIM_OC_InitTypeDef     sPWMConfig1,sPWMConfig2,sPWMConfig3;
-
 namespace MH_Hardware{
 	
 	_bldc_motor::_bldc_motor(uint8_t hall)
@@ -213,17 +211,17 @@ namespace MH_Hardware{
 
 
 
-		void _bldc_motor::setRun(bool isRUN)
+		void _bldc_motor::enableRun(bool isRUN)
 		{
 			_isEnable = isRUN;
 		}
 		
-		void _bldc_motor::setDir(bool isCW)
+		void _bldc_motor::setClockWise(bool isCW)
 		{
 			_isClockWise = isCW;
 		}
 	
-	uint8_t _bldc_motor::updateHallValue(void)
+	void _bldc_motor::updateHallValue(void)
 	{
 		uint8_t pinState = 0x00;
 		static __IO int8_t pinState0 = 0;
@@ -241,23 +239,34 @@ namespace MH_Hardware{
 			pinState |= 0x01;
 		}
 		
-		if(pinState0 != pinState)//霍尔传感器每变化一次，计数器++
+		if(pinState0 != pinState)
 		{
-			_hallStepCount++;
+			_hallStepCount++;//更新hall传感器状态变化的累计值
 			pinState0 = pinState;
-		}
-		
-		_hallStep = pinState;
+		}	
+		_hallStep = pinState;//更新hall传感器状态
+	}
+	
+	uint8_t _bldc_motor::getHallValue(void)
+	{
 		return _hallStep;
 	}
 	
-
-	void _bldc_motor::setSpeed(uint8_t user_pwmPercent)
+	void _bldc_motor::updatePWMD(uint8_t userPWMPercent)
+	{
+		_pwmPercent = userPWMPercent;
+	}
+	
+	uint16_t _bldc_motor::getPWMD()
+	{
+		return _pwmPercent;
+	}
+	
+	
+	void _bldc_motor::setSpeed()
 	{
 		if(_isEnable)//RUN
 		{			
-				_pwmPercent = user_pwmPercent;
-		
 				if(_isClockWise)
 				{
 					BLDC_PHASE_CHANGE(_hallStep,_pwmPercent);
